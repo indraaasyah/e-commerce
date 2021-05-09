@@ -31,7 +31,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.form', $this->data);    }
+        $categories = Category::orderBy('name', 'asc')->get();
+        return view('admin.categories.form', $this->data);
+    }
 
     /**
      * Store a newly created resource in storage.
