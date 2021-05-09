@@ -26,8 +26,13 @@
                         {!! Form::label('name', 'Nama') !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Category Name']) !!}
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('parent_id', 'Parent') !!}
+                        {!! General::selectMultilevel('parent_id', $categories, ['class' => 'form-control', 'selected' => !empty(old('parent_id')) ? old('parent_id') : (!empty($category['parent_id']) ? $category['parent_id'] : ''), 'placeholder' => '--Choose Category--' ]) !!}
+                    </div>
                     <div class="form-footer pt-5 border-top">
                         <button type="submit" class="btn btn-primary btn-default">Save</button>
+                        <a href="{{ url('admin/categories') }}" class="btn btn-secondary btn-default">Back</a>
                     </div>
                     {!! Form::close() !!}
                 </div>
