@@ -23,6 +23,7 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
+        //VALIDASI REQUEST FORM KATEGORI
         $parentId = (int) $this->get('parent_id');
         $id = (int) $this->get('id');
 

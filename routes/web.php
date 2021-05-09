@@ -19,6 +19,7 @@ Route::group(
     ['namespace' => 'Admin', 'prefix' => 'admin'],
     function () {
         Route::get('dashboard', 'DashboardController@index');
+        //ROUTING KATEGORI
         Route::resource('categories', 'CategoryController');
     }
 );

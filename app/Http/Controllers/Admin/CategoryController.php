@@ -43,6 +43,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        //MENYIMPAN KATEGORI KE DATABASE
         $params = $request->except('_token');
         $params['slug'] = Str::slug($params['name']);
         $params['parent_id'] = 0;
@@ -87,6 +88,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
+        // MENGEDIT KATEGORI
         $params = $request->except('_token');
         $params['slug'] = Str::slug($params['name']);
 
@@ -105,6 +107,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        // MENGHAPUS KATEGORI
         $category = Category::FindOrFail($id);
         if ($category->delete()) {
             Session::flash('success', 'Category has been deleted');
