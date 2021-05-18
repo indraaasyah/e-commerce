@@ -7,7 +7,7 @@
         <div class="col-lg-12">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom">
-                    <h2>Categories</h2>
+                    <h2>Products</h2>
                 </div>
 
                 <div class="card-body">
@@ -16,24 +16,26 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">SKU</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">Parents</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                        @forelse ($categories as $category)
+                        @forelse ($products as $product)
                             <tr>
-                                <td scope="row">{{$category->id}}</td>
-                                <td>{{$category->name}}</td>
-                                <td>{{$category->slug}}</td>
-                                <td>{{$category->parent ? $category->parent->name : '' }}</td>
+                                <td scope="row">{{$product->id}}</td>
+                                <td>{{$product->sku}}</td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->price}}</td>
+                                <td>{{$product->status}}</td>
                                 <td>
-                                    <a href="{{ url('admin/categories/'. $category->id .'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ url('admin/products/'. $product->id .'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
                                     
-                                    {!! Form::open(['url' => 'admin/categories/'. $category->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
+                                    {!! Form::open(['url' => 'admin/products/'. $product->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
                                     {!! Form::hidden('_method', 'DELETE') !!}
                                     {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                                     {!! Form::close() !!}
@@ -41,14 +43,15 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">No records found</td>
+                                <td colspan="6">No records found</td>
                             </tr>
                         @endforelse
                         </tbody>
                     </table>
+                    {{ $products->Links() }}
                 </div>
                 <div class="card-footer text-right">
-                    <a href="{{url('admin/categories/create')}}" class="btn btn-primary">Add New</a>
+                    <a href="{{url('admin/products/create')}}" class="btn btn-primary">Add New</a>
                 </div>
             </div>  
         </div>
