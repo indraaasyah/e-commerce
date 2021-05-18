@@ -8,6 +8,9 @@
 
 <div class="content">
     <div class="row">
+        <div class="col-lg-4">
+            @include('admin.products.product_menus')
+        </div>
         <div class="col-lg-8">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom">
@@ -35,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             {!! Form::label('category_ids', 'Category') !!}
-                            {!! General::selectMultilevel('category_ids[]', $categories, ['class' => 'form-control', 'selected' => !empty(old('category_ids')) ? old('category_ids') : (!empty($category['category_ids']) ? $category['category_ids'] : ''), 'placeholder' => '--Choose Category--' ]) !!}
+                            {!! General::selectMultiLevel('category_ids[]', $categories, ['class' => 'form-control', 'multiple' => true, 'selected' => !empty(old('category_ids')) ? old('category_ids') : $categoryIDs, 'placeholder' => '-- Choose Category --']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('short_description', 'Short Description') !!}
