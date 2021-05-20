@@ -142,6 +142,22 @@
       $(".delete").on("submit", function(){
         return confirm("Are you sure to delete this?");
       });
+
+      function showHideConfigurableAttributes() {
+        var productType = $(".product-type").val();
+          
+        if (productType == 'configurable') {
+          $(".configurable-attributes").show();
+        } else {
+          $(".configurable-attributes").hide();
+        }
+      }
+      $(function(){
+        showHideConfigurableAttributes();
+        $(".product-type").change(function() {
+          showHideConfigurableAttributes();
+        });
+      });
     </script>
   </body>
 </html>
