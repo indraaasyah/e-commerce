@@ -31,14 +31,18 @@
                                 <td>{{$attribute->name}}</td>
                                 <td>{{$attribute->type}}</td>
                                 <td>
-                                    <a href="{{ url('admin/attributes/'. $attribute->id .'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                    @can('edit_attributes')
+                                        <a href="{{ url('admin/attributes/'. $attribute->id .'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
+                                    @endcan
                                     @if ($attribute->type == 'select')
                                         <a href="{{ url('admin/attributes/'. $attribute->id .'/options')}}" class="btn btn-success btn-sm">Options</a>
                                     @endif
-                                    {!! Form::open(['url' => 'admin/attributes/'. $attribute->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
-                                    {!! Form::hidden('_method', 'DELETE') !!}
-                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                                    {!! Form::close() !!}
+                                    @can('delete_attributes')
+                                        {!! Form::open(['url' => 'admin/attributes/'. $attribute->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
+                                        {!! Form::hidden('_method', 'DELETE') !!}
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                        {!! Form::close() !!}
+                                    @endcan()
                                 </td>
                             </tr>
                         @empty
@@ -49,9 +53,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer text-right">
-                    <a href="{{url('admin/attributes/create')}}" class="btn btn-primary">Add New</a>
-                </div>
+                @can('add_attributes')
+                    <div class="card-footer text-right">
+                        <a href="{{url('admin/attributes/create')}}" class="btn btn-primary">Add New</a>
+                    </div>
+                @endcan
             </div>  
         </div>
     </div>
