@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-// kayaknya di bawah ini bakal jadi bug
-use App\Role;
+use App\Http\Controllers\Controller;
+
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
+
+use App\Authorizable;
+use Session;
 
 class RoleController extends Controller
 {
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        return view('admin.roles.index', compact('roles', 'permissions'));
     }
 
     /**
@@ -36,7 +45,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['name' => 'required|unique:roles']);
+
+        if (Role::create($request->only('name'))) {
+            Session::flash('success', 'New Role has been added.');
+        }
+
+        return redirect('admin/roles');
     }
 
     /**
@@ -70,7 +85,18 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        Session::flash('success', $role->name . ' Permissions has been updated.');
+        if ($role->name == 'Admin') {
+            $role->syncPermissions(Permission::all());
+
+            return redirect('admin/roles');
+        }
+
+        $permissions = $request->get('permissions', []);
+
+        $role->syncPermissions($permissions);
+
+        return redirect('admin/roles');
     }
 
     /**

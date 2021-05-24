@@ -5,7 +5,7 @@
 <div id="sidebar" class="sidebar sidebar-with-footer">
     <!-- Aplication Brand -->
     <div class="app-brand">
-        <a href="/index.html" title="Sleek Dashboard">
+        <a href="{{ url('admin/dashboard') }}" title="Sleek Dashboard">
             <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33" viewBox="0 0 30 33">
                 <g fill="none" fill-rule="evenodd">
                     <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z"/>
@@ -48,6 +48,29 @@
                     </div>
                 </ul>
             </li>
+
+            <li  class="has-sub">
+                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#auth"
+                    aria-expanded="false" aria-controls="auth">
+                    <i class="mdi mdi-account-multiple-outline"></i>
+                    <span class="nav-text">Users &amp; Roles</span> <b class="caret"></b>
+                </a>
+                <ul class="collapse"  id="auth"
+                    data-parent="#sidebar-menu">
+                    <div class="sub-menu">
+                        <li  class="" >
+                            <a class="sidenav-item-link" href="{{ url('admin/users')}}">
+                            <span class="nav-text">Users</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="sidenav-item-link" href="{{ url('admin/roles')}}">
+                            <span class="nav-text">Roles</span>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </li>           
         </ul>
     </div>
 </div>
