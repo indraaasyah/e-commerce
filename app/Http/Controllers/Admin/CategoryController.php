@@ -17,6 +17,14 @@ class CategoryController extends Controller
 {
     use Authorizable;
 
+    public function __construct()
+    {
+        parent::__construct(); //memanggil root controller untuk menunjukkan menu yang sedang aktif
+
+        $this->data['currentAdminMenu'] = 'catalog'; //menunjukkan menu yang sedang aktif
+        $this->data['currentAdminSubMenu'] = 'category';
+    }
+
     /**
      * Display a listing of the resource.
      *

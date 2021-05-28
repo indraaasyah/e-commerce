@@ -28,6 +28,11 @@ class ProductController extends Controller
 
     public function __construct()
     {
+        parent::__construct(); //memanggil root controller untuk menunjukkan menu yang sedang aktif
+
+        $this->data['currentAdminMenu'] = 'catalog'; //menunjukkan menu yang sedang aktif
+        $this->data['currentAdminSubMenu'] = 'product';
+
         $this->data['statuses'] = Product::statuses();
         $this->data['types'] = Product::types();
     }

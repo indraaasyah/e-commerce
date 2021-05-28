@@ -20,6 +20,11 @@ class AttributeController extends Controller
     
     public function __construct()
     {
+        parent::__construct(); //memanggil root controller untuk menunjukkan menu yang sedang aktif
+
+        $this->data['currentAdminMenu'] = 'catalog'; //menunjukkan menu yang sedang aktif
+        $this->data['currentAdminSubMenu'] = 'attribute';
+        
         $this->data['types'] = Attribute::types();
         $this->data['booleanOptions'] = Attribute::booleanOptions();
         $this->data['validations'] = Attribute::validations();
