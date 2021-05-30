@@ -302,7 +302,7 @@ class ProductController extends Controller
         return view('admin.products.images', $this->data);
     }
     
-    public function add_image($id)
+    public function addImage($id)
     {
         if (empty($id)) {
             return redirect('admin/products');
@@ -316,7 +316,7 @@ class ProductController extends Controller
         return view('admin.products.image_form', $this->data);
     }
     
-    public function upload_image(ProductImageRequest $request, $id)
+    public function uploadImage(ProductImageRequest $request, $id)
     {
         $product = Product::findOrFail($id);
 
@@ -343,7 +343,7 @@ class ProductController extends Controller
         }
     }
 
-    public function remove_image($id)
+    public function removeImage($id)
     {
         $image = ProductImage::findOrFail($id);
 
