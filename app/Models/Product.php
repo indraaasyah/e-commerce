@@ -45,7 +45,7 @@ class Product extends Model
     
     public function productAttributeValues()
     {
-        return $this->hasMany('App\Models\ProductAttributeValue');
+        return $this->hasMany('App\Models\ProductAttributeValue', 'parent_product_id');
     }
     
     public function categories()
@@ -85,8 +85,8 @@ class Product extends Model
     public function scopeActive($query)
     {
         return $query->where('status', 1)
-            ->where('parent_id', NULL)
-            ->orderBy('created_at', 'DESC');
+            ->where('parent_id', NULL);
+            // ->orderBy('created_at', 'DESC');
     }
 
     public function priceLabel()

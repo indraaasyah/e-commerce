@@ -28,7 +28,7 @@
 									</div>
 									<div class="shop-selector">
 										<label>Sort By : </label>
-										{{-- {{ Form::select('sort', $sorts , $selectedSort ,array('onChange' => 'this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);')) }} --}}
+										{{ Form::select('sort', $sorts , $selectedSort ,array('onChange' => 'this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);')) }}
 									</div>
 								</div>
 								<div class="shop-filter-tab">
